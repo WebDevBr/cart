@@ -2,9 +2,7 @@
 
 namespace CakePhpBrasil\Cart\Adapter;
 
-use CakePhpBrasil\Cart\Adapter\ArrayAdapter;
-
-class ArrayTest extends \PHPUnit_Framework_TestCase
+class ArrayAdapterTest extends \PHPUnit_Framework_TestCase
 {
 	protected $product_one = [
 		'id'=>1,
@@ -52,7 +50,7 @@ class ArrayTest extends \PHPUnit_Framework_TestCase
 		$array->add($this->product_one);
 		$array->add($this->product_two);
 
-		$cart = $array->remove(1);
+		$cart = $array->delete(1);
 
 		$expected = [
 			$this->product_two

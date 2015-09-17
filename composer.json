@@ -1,7 +1,7 @@
 {
 	"autoload": {
-		"PSR-4": {
-			"CakePhpBrasil\\Cart\\": "src"
+		"psr-4": {
+			"CakePhpBrasil\\": "src/"
 		}
 	},
     "require-dev": {
