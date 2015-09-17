@@ -10,6 +10,8 @@ Você vai precisar conhecer Git, se não conhece aqui tem um [curso gratuito](ht
 
 Faça um fork do projeto e mande suas alterações via pull request.
 
+Não esqueça de rodar um `composer install` depois de baixar este projeto.
+
 ### Quais são as tarefas?
 
 Para saber o que ainda precisa ser feito vá até o arquivo em *tests/reports/testdox.html* para ver os testes que já estão resolvidos ou em *tests/reports/index.html* para ver a cobertura de testes.
