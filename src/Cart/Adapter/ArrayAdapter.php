@@ -15,8 +15,16 @@ class ArrayAdapter implements AdapterFactory
     public function delete($id)
     {
         $key = array_search($id, array_column($this->products, 'id'));
-        unset($this->products[$key]);
+        
+        if ($key !== false) {
+            unset($this->products[$key]);
+        }
 
         return array_values($this->products);
+    }
+
+    public function all()
+    {
+        return $this->products;
     }
 }

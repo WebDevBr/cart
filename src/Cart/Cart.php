@@ -33,21 +33,27 @@ class Cart
     {
         usort($this->products, [$this, $by]);
 
-        if ($inverse)
+        if ($inverse) {
             $this->products = array_reverse($this->products);
+        }
 
         return $this;
     }
 
     public function all()
     {
+        if (empty($this->products)) {
+            return $this->adapter->all();
+        }
+
         return $this->products;
     }
 
     private function orderByValue($a, $b)
     {
-        if ($a['value'] == $b['value'])
+        if ($a['value'] == $b['value']) {
             return 0;
+        }
 
         return ($a['value'] < $b['value']) ? -1 : 1;
     }
