@@ -4,7 +4,7 @@ namespace CakePhpBrasil\Cart\Adapter;
 
 use Cake\Network\Session;
 
-class CakePhp3 implements AdapterFactory
+class Cake3Session implements AdapterFactory
 {
     private $session;
 
