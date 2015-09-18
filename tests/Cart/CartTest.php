@@ -21,9 +21,9 @@ class CartTest extends \PHPUnit_Framework_TestCase
     ];
 
     protected $product_tree = [
-        'id'=>2,
+        'id'=>3,
         'title'=>'Notebook Lenovo G400s',
-        'qtd'=>1,
+        'qtd'=>8,
         'value'=>1499.99
     ];
 
