@@ -1,4 +1,6 @@
 {
+	"name": "cakephp-brasil/cart",
+    "description": "A simple e-commerce cart. By CakePHP Brasil.",
 	"autoload": {
 		"psr-4": {
 			"CakePhpBrasil\\": "src/"
