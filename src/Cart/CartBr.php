@@ -4,7 +4,7 @@ namespace CakePhpBrasil\Cart;
 
 use CakePhpBrasil\Cart\Adapter\AdapterFactory;
 
-class Cart
+class CartBr
 {
 
     const ORDER_BY_VALUE = 'orderByValue';

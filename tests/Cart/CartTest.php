@@ -3,6 +3,7 @@
 namespace CakePhpBrasil\Cart;
 
 use CakePhpBrasil\Cart\Adapter\ArrayAdapter;
+use CakePhpBrasil\Cart\CartBr as Cart;
 
 class CartTest extends \PHPUnit_Framework_TestCase
 {
