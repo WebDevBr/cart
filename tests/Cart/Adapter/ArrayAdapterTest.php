@@ -44,7 +44,7 @@ class ArrayAdapterTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals($expected, $cart);
     }
 
-    public function testRemovendoItem()
+    public function testRemovendoItem1()
     {
         $array = new ArrayAdapter();
         $array->add($this->product_one);
@@ -54,6 +54,21 @@ class ArrayAdapterTest extends \PHPUnit_Framework_TestCase
 
         $expected = [
             $this->product_two
+        ];
+
+        $this->assertEquals($expected, $cart);
+    }
+
+    public function testRemovendoItem2()
+    {
+        $array = new ArrayAdapter();
+        $array->add($this->product_one);
+        $array->add($this->product_two);
+
+        $cart = $array->delete(2);
+
+        $expected = [
+            $this->product_one
         ];
 
         $this->assertEquals($expected, $cart);
