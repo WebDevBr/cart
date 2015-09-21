@@ -2,6 +2,8 @@
 
 namespace CakePhpBrasil\Cart\Adapter;
 
+// use CakePhpBrasil\Cart\Adapter;
+
 class ArrayAdapterTest extends \PHPUnit_Framework_TestCase
 {
     protected $product_one = [
@@ -17,6 +19,19 @@ class ArrayAdapterTest extends \PHPUnit_Framework_TestCase
         'qtd'=>1,
         'value'=>4599.99
     ];
+
+    /** @var ArrayAdapter */
+    protected $adapter;
+
+    public function setUp()
+    {
+        $this->adapter = new ArrayAdapter();
+    }
+
+    public function testImplementsAdapterFactory()
+    {
+        $this->assertInstanceOf('CakePhpBrasil\Cart\Adapter\AdapterFactory', $this->adapter);
+    }
 
     public function testAdicionarItem()
     {
