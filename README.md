@@ -8,7 +8,7 @@ A ideia é que, em um futuro, ele possa ser adaptado para outros frameworks ou p
 
 Você não deve usar isso em produção, ainda estamos desenvolvendo, mas para ver como está você precisa fazer duas coisas
 
-### 1. Adicionar a dependência no composer
+### 1. Adicionar o pacote ao composer
 
 Rode o comando `composer require "cakephp-brasil/cart:dev-master"`
 
