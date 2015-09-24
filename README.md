@@ -1,5 +1,7 @@
 # CakePHPBrasil Cart
 
+[![Build Status](https://travis-ci.org/CakePHPBrasil/cart.svg?branch=master)](https://travis-ci.org/CakePHPBrasil/cart)
+
 Este componente deverá disponibilizar uma biblioteca para carrinho de compras e será desenvolvido pela comunidade CakePHP Brasil.
 
 A ideia é que, em um futuro, ele possa ser adaptado para outros frameworks ou projetos que não o CakePHP 3.
