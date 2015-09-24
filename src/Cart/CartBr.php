@@ -19,18 +19,19 @@ class CartBr
 
     public function add(Array $product)
     {
-        $this->products = $this->adapter->add($product);
+        $this->adapter->add($product);
         return $this;
     }
 
     public function delete($id)
     {
-        $this->products = $this->adapter->delete($id);
+        $this->adapter->delete($id);
         return $this;
     }
 
     public function order($by, $inverse = false)
     {
+        $this->products = $this->adapter->all();
         usort($this->products, [$this, $by]);
 
         if ($inverse) {
@@ -46,7 +47,7 @@ class CartBr
             return $this->adapter->all();
         }
 
-        return $this->products;
+        return array_values($this->products);
     }
 
     private function orderByValue($a, $b)

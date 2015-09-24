@@ -3,7 +3,6 @@
 namespace CakePhpBrasil\Cart;
 
 use CakePhpBrasil\Cart\Adapter\ArrayAdapter;
-use CakePhpBrasil\Cart\CartBr as Cart;
 
 class CartBrTest extends \PHPUnit_Framework_TestCase
 {
@@ -30,19 +29,18 @@ class CartBrTest extends \PHPUnit_Framework_TestCase
 
     public function testAdicionandoProdutoNoCarrinho()
     {
-        $cart = new Cart(new ArrayAdapter);
+        $cart = new CartBr(new ArrayAdapter);
         $cart->add($this->product_one);
 
         $expected = [
             $this->product_one
         ];
-
         $this->assertEquals($expected, $cart->all());
     }
 
     public function testAdicionandoMultiplosProdutosNoCarrinho()
     {
-        $cart = new Cart(new ArrayAdapter);
+        $cart = new CartBr(new ArrayAdapter);
         $cart->add($this->product_one)
             ->add($this->product_two)
             ->add($this->product_tree);
@@ -58,7 +56,7 @@ class CartBrTest extends \PHPUnit_Framework_TestCase
 
     public function testRemovendoProdutosDoCarrinho()
     {
-        $cart = new Cart(new ArrayAdapter);
+        $cart = new CartBr(new ArrayAdapter);
         $cart->add($this->product_one)
             ->add($this->product_two)
             ->add($this->product_tree);
@@ -75,12 +73,12 @@ class CartBrTest extends \PHPUnit_Framework_TestCase
 
     public function testOrdenacaoDosProdutosPorValorMenor()
     {
-        $cart = new Cart(new ArrayAdapter);
+        $cart = new CartBr(new ArrayAdapter);
         $cart->add($this->product_one)
             ->add($this->product_two)
             ->add($this->product_tree);
 
-        $cart->order(Cart::ORDER_BY_VALUE);
+        $cart->order(CartBr::ORDER_BY_VALUE);
 
         $expected = [
             $this->product_one,
@@ -93,12 +91,12 @@ class CartBrTest extends \PHPUnit_Framework_TestCase
 
     public function testOrdenacaoDosProdutosPorValorMaior()
     {
-        $cart = new Cart(new ArrayAdapter);
+        $cart = new CartBr(new ArrayAdapter);
         $cart->add($this->product_one)
             ->add($this->product_two)
             ->add($this->product_tree);
 
-        $cart->order(Cart::ORDER_BY_VALUE, true);
+        $cart->order(CartBr::ORDER_BY_VALUE, true);
 
         $expected = [
             $this->product_one,

@@ -8,26 +8,36 @@ class ArrayAdapter implements AdapterFactory
 
     public function add(Array $product)
     {
-        $this->products = array_merge($this->products, [$product]);
-        return $this->products;
+        $key = $this->getKey($product['id']);
+        if ($key === false) {
+            $this->products = array_merge($this->products, [$product]);
+        } else {
+            $this->products[$key]['qtd'] += 1;
+        }
+        return $this;
     }
     
     public function delete($id)
     {
-        $key = array_search($id, $this->array_column($this->products, 'id'));
+        $key = $this->getKey($id);
         
         if ($key !== false) {
-            unset($this->products[$key]);
+            $this->products[$key]['qtd'] -= 1;
+
+            $this->unsetProduct($key);
         }
 
-        $this->products = array_values($this->products);
-
-        return $this->products;
+        return $this;
     }
 
     public function all()
     {
-        return $this->products;
+        return array_values($this->products);
+    }
+
+    protected function getKey($id)
+    {
+        return array_search($id, $this->array_column($this->products, 'id'));
     }
 
     protected function array_column($array,$column_name)
@@ -39,5 +49,12 @@ class ArrayAdapter implements AdapterFactory
         }
 
         return array_column($this->products, 'id');
+    }
+
+    private function unsetProduct($key)
+    {
+        if ($this->products[$key]['qtd'] <= 0) {
+            unset($this->products[$key]);
+        }
     }
 }

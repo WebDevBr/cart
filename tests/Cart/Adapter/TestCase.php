@@ -21,6 +21,12 @@ class TestCase extends \PHPUnit_Framework_TestCase
     /** @var ArrayAdapter */
     protected $adapter;
 
+    public function setUp()
+    {
+        $this->product_one['qtd']=2;
+        $this->product_two['qtd']=1;
+    }
+
     public function testImplementsAdapterFactory()
     {
         $this->assertInstanceOf('CakePhpBrasil\Cart\Adapter\AdapterFactory', $this->adapter);
@@ -28,11 +34,13 @@ class TestCase extends \PHPUnit_Framework_TestCase
 
     public function testAdicionarItem()
     {
-        $cart = $this->adapter->add($this->product_one);
+        $this->adapter->add($this->product_one);
 
         $expected = [
             $this->product_one
         ];
+
+        $cart = $this->adapter->all();
 
         $this->assertEquals($expected, $cart);
     }
@@ -40,12 +48,14 @@ class TestCase extends \PHPUnit_Framework_TestCase
     public function testAdicionarMultiplosItens()
     {
         $this->adapter->add($this->product_one);
-        $cart = $this->adapter->add($this->product_two);
+        $this->adapter->add($this->product_two);
 
         $expected = [
             $this->product_one,
             $this->product_two
         ];
+
+        $cart = $this->adapter->all();
 
         $this->assertEquals($expected, $cart);
     }
@@ -55,11 +65,14 @@ class TestCase extends \PHPUnit_Framework_TestCase
         $this->adapter->add($this->product_one);
         $this->adapter->add($this->product_two);
 
-        $cart = $this->adapter->delete(1);
+        $this->adapter->delete(1);
+        $this->adapter->delete(1);
 
         $expected = [
             $this->product_two
         ];
+
+        $cart = $this->adapter->all();
 
         $this->assertEquals($expected, $cart);
     }
@@ -69,12 +82,50 @@ class TestCase extends \PHPUnit_Framework_TestCase
         $this->adapter->add($this->product_one);
         $this->adapter->add($this->product_two);
 
-        $cart = $this->adapter->delete(2);
+        $this->adapter->delete(2);
 
         $expected = [
             $this->product_one
         ];
 
+        $cart = $this->adapter->all();
+
         $this->assertEquals($expected, $cart);
+    }
+
+    public function testIncrementaQuantidade()
+    {
+        $this->adapter->add($this->product_one);
+        $this->adapter->add($this->product_one);
+        $this->adapter->add($this->product_two);
+        $this->adapter->add($this->product_two);
+        $this->adapter->add($this->product_two);
+        $this->adapter->add($this->product_two);
+
+        $this->product_one['qtd']+=1;
+        $this->product_two['qtd']+=3;
+
+        $expected = [
+            $this->product_one,
+            $this->product_two
+        ];
+
+        $this->assertEquals($expected, $this->adapter->all());
+    }
+
+    public function testDecrementarERemoverQuantidade()
+    {
+        $this->adapter->add($this->product_one);
+        $this->adapter->add($this->product_two);
+        $this->adapter->delete(1);
+        $this->adapter->delete(2);
+
+        $this->product_one['qtd']=1;
+
+        $expected = [
+            $this->product_one
+        ];
+
+        $this->assertEquals($expected, $this->adapter->all());
     }
 }

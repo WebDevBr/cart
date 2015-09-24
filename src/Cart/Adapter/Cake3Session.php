@@ -33,7 +33,7 @@ class Cake3Session extends ArrayAdapter implements AdapterFactory
 
     public function all()
     {
-        return $this->getSession();
+        return parent::all($this->getSession());
     }
 
     protected function getSession()
