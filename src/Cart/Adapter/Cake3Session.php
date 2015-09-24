@@ -4,7 +4,7 @@ namespace CakePhpBrasil\Cart\Adapter;
 
 use Cake\Network\Session;
 
-class Cake3Session implements AdapterFactory
+class Cake3Session extends ArrayAdapter implements AdapterFactory
 {
     private $session;
 
@@ -15,26 +15,20 @@ class Cake3Session implements AdapterFactory
 
     public function add(Array $product)
     {
-        $products = $this->getSession();
-        array_push($products, $product);
-        $this->session->write('store.cart', $products);
-        return $products;
+        $this->products = $this->getSession();
+        parent::add($product);
+        $this->session->write('store.cart', $this->products);
+        return $this->products;
     }
     
     public function delete($id)
     {
-        $products = $this->getSession();
-        $key = array_search($id, array_column($products, 'id'));
-        
-        if ($key !== false) {
-            unset($products[$key]);
-        }
+        $this->products = $this->getSession();
+        parent::delete($id);
 
-        $products = array_values($products);
+        $this->session->write('store.cart', $this->products);
 
-        $this->session->write('store.cart', $products);
-
-        return $products;
+        return $this->products;
     }
 
     public function all()

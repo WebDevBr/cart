@@ -4,7 +4,7 @@ namespace CakePhpBrasil\Cart\Adapter;
 
 class ArrayAdapter implements AdapterFactory
 {
-    private $products = [];
+    protected $products = [];
 
     public function add(Array $product)
     {
@@ -20,7 +20,9 @@ class ArrayAdapter implements AdapterFactory
             unset($this->products[$key]);
         }
 
-        return array_values($this->products);
+        $this->products = array_values($this->products);
+
+        return $this->products;
     }
 
     public function all()
