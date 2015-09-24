@@ -10,20 +10,17 @@ Você não deve usar isso em produção, ainda estamos desenvolvendo, mas para v
 
 ### 1. Adicionar a dependência no composer
 
-Para isso adicione o pacote `cakephp-brasil/cart` ao require do *composer.json*, ele irá ficar mais ou menos assim:
-
-    "require": {
-        "php": ">=5.4.16",
-        "cakephp/cakephp": "~3.0",
-        "mobiledetect/mobiledetectlib": "2.*",
-        "cakephp/migrations": "~1.0",
-        "cakephp/plugin-installer": "*",
-        "cakephp-brasil/cart": "dev-master" <-- Aqui o pacote
-    },
-
-Ou rode o comando `composer require "cakephp-brasil/cart:dev-master"`
+Rode o comando `composer require "cakephp-brasil/cart:dev-master"`
 
 Não esqueça de substituir `composer` por `php composer.phar` caso tenha baixado o arquivo localmente.
+
+Para isso adicione o pacote `cakephp-brasil/cart` ao require do *composer.json*.
+
+    "require": {
+        "cakephp-brasil/cart": "dev-master"
+    },
+
+Não remove os pacotes que você já tiver, apenas adicione este novo, fique atento as virgulas!
 
 ### 2. Configure
 
