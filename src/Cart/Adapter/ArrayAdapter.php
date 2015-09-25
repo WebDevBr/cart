@@ -16,6 +16,8 @@ class ArrayAdapter implements AdapterFactory
             $this->products[$key]['qtd'] += 1;
         }
 
+        $this->products = array_values($this->products);
+
         return $this;
     }
     
@@ -28,6 +30,8 @@ class ArrayAdapter implements AdapterFactory
             if ($this->products[$key]['qtd'] <= 0) unset($this->products[$key]);
         }
 
+        $this->products = array_values($this->products);
+
         return $this;
     }
 
@@ -35,7 +39,7 @@ class ArrayAdapter implements AdapterFactory
     {
         if ($products)
             $this->products = $products;
-        
+
         return array_values($this->products);
     }
 
