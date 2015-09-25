@@ -13,6 +13,7 @@ class ArrayAdapter implements AdapterFactory
         if ($key === false) {
             $this->products = array_merge($this->products, [$product]);
         } else {
+            $this->products[$key] = $this->changeValue($this->products[$key]);
             $this->products[$key]['qtd'] += 1;
         }
 
@@ -23,11 +24,16 @@ class ArrayAdapter implements AdapterFactory
     
     public function delete($id)
     {
-        
-        if (($key=$this->getKey($id)) !== false) {
+        $key=$this->getKey($id);
+
+        if ($key !== false) {
+            $this->products[$key] = $this->changeValue($this->products[$key], true);
+
             $this->products[$key]['qtd'] -= 1;
 
-            if ($this->products[$key]['qtd'] <= 0) unset($this->products[$key]);
+            if ($this->products[$key]['qtd'] <= 0) {
+                unset($this->products[$key]);
+            }
         }
 
         $this->products = array_values($this->products);
@@ -37,8 +43,9 @@ class ArrayAdapter implements AdapterFactory
 
     public function all(Array $products = null)
     {
-        if ($products)
+        if ($products) {
             $this->products = $products;
+        }
 
         return array_values($this->products);
     }
@@ -48,5 +55,15 @@ class ArrayAdapter implements AdapterFactory
         return array_search($id, array_column($this->products, 'id'));
     }
 
-    
+    protected function changeValue($product, $remove = false)
+    {
+        $value = $product['value']/$product['qtd'];
+
+        if ($remove) {
+            $product['value'] -= $value;
+        } else {
+            $product['value'] += $value;
+        }
+        return $product;
+    }
 }

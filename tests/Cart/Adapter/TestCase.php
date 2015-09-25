@@ -102,8 +102,16 @@ class TestCase extends \PHPUnit_Framework_TestCase
         $this->adapter->add($this->product_two);
         $this->adapter->add($this->product_two);
 
+        $value_one = $this->product_one['value']/$this->product_one['qtd'];
+        $value_two = $this->product_two['value']/$this->product_two['qtd'];
+
+        $value_two *= 3;
+
         $this->product_one['qtd']+=1;
         $this->product_two['qtd']+=3;
+
+        $this->product_one['value']+=$value_one;
+        $this->product_two['value']+=$value_two;
 
         $expected = [
             $this->product_one,
@@ -120,7 +128,11 @@ class TestCase extends \PHPUnit_Framework_TestCase
         $this->adapter->delete(1);
         $this->adapter->delete(2);
 
+        $value_one = $this->product_one['value']/$this->product_one['qtd'];
+
         $this->product_one['qtd']=1;
+
+        $this->product_one['value']-=$value_one;
 
         $expected = [
             $this->product_one

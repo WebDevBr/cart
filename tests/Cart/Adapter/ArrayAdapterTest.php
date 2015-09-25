@@ -6,7 +6,7 @@ class ArrayAdapterTest extends TestCase
 {
     public function setUp()
     {
-    	parent::setUp();
+        parent::setUp();
         $this->adapter = new ArrayAdapter();
     }
 }
