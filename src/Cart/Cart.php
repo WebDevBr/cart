@@ -33,5 +33,5 @@ class Cart
 
     private function __wakeup()
     {
-    }    
+    }
 }

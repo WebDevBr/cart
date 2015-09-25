@@ -11,5 +11,4 @@ class Cake3SessionTest extends TestCase
     {
         $this->adapter = new Cake3Session(new Session);
     }
-
 }
