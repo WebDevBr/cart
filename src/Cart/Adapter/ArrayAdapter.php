@@ -31,8 +31,11 @@ class ArrayAdapter implements AdapterFactory
         return $this;
     }
 
-    public function all()
+    public function all(Array $products = null)
     {
+        if ($products)
+            $this->products = $products;
+        
         return array_values($this->products);
     }
 
