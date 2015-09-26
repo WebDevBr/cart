@@ -4,7 +4,7 @@ namespace WebDevBr\Cart;
 
 class ProductManagerTest extends \PHPUnit_Framework_TestCase
 {
-	protected $product_one = [
+    protected $product_one = [
         'id'=>1,
         'title'=>'Celular MotoG 3',
         'qtd'=>2,
