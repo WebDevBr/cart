@@ -1,10 +1,10 @@
 <?php
 
-namespace CakePhpBrasil\Cart\Adapter;
+namespace WebDevBr\Cart;
 
-class TestCase extends \PHPUnit_Framework_TestCase
+class ProductManagerTest extends \PHPUnit_Framework_TestCase
 {
-    protected $product_one = [
+	protected $product_one = [
         'id'=>1,
         'title'=>'Celular MotoG 3',
         'qtd'=>2,
@@ -23,13 +23,15 @@ class TestCase extends \PHPUnit_Framework_TestCase
 
     public function setUp()
     {
+        parent::setUp();
+        $this->adapter = new ProductManager();
         $this->product_one['qtd']=2;
         $this->product_two['qtd']=1;
     }
 
     public function testImplementsAdapterFactory()
     {
-        $this->assertInstanceOf('CakePhpBrasil\Cart\Adapter\AdapterFactory', $this->adapter);
+        $this->assertInstanceOf('WebDevBr\Cart\Contract', $this->adapter);
     }
 
     public function testAdicionarItem()

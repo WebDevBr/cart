@@ -1,8 +1,11 @@
 <?php
-namespace CakePhpBrasil\Cart\Adapter;
-class ArrayAdapter implements AdapterFactory
+
+namespace WebDevBr\Cart;
+
+class ProductManager implements Contract
 {
     protected $products = [];
+
     public function add(Array $product)
     {
         $key = $this->getKey($product['id']);

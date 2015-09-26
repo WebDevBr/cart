@@ -1,8 +1,8 @@
 <?php
 
-namespace CakePhpBrasil\Cart\Adapter;
+namespace WebDevBr\Cart;
 
-interface AdapterFactory
+interface Contract
 {
     public function add(Array $product);
     public function delete($id);

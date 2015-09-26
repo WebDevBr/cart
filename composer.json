@@ -1,9 +1,9 @@
 {
-	"name": "cakephp-brasil/cart",
-    "description": "A simple e-commerce cart. By CakePHP Brasil.",
+	"name": "webdevbr/cart",
+    "description": "A simple e-commerce cart. By WebDevBr Brasil.",
 	"autoload": {
 		"psr-4": {
-			"CakePhpBrasil\\": "src/"
+			"WebDevBr\\": "src/"
 		},
 		"files": [
 			"to_php_54.php"

@@ -1,10 +1,8 @@
-# CakePHPBrasil Cart
+# WebDevBr Cart
 
-[![Build Status](https://travis-ci.org/CakePHPBrasil/cart.svg?branch=master)](https://travis-ci.org/CakePHPBrasil/cart)
+[![Build Status](https://travis-ci.org/WebDevBr/cart.svg?branch=master)](https://travis-ci.org/WebDevBr/cart)
 
-Este componente deverá disponibilizar uma biblioteca para carrinho de compras e será desenvolvido pela comunidade CakePHP Brasil.
-
-A ideia é que, em um futuro, ele possa ser adaptado para outros frameworks ou projetos que não o CakePHP 3.
+Este componente deverá disponibilizar uma biblioteca que facilite a criação de carrinhos de compra nos mais diversos Frameworks.
 
 ## Como instalar
 
@@ -12,27 +10,18 @@ Você não deve usar isso em produção, ainda estamos desenvolvendo, mas para v
 
 ### 1. Adicionar o pacote ao composer
 
-Rode o comando `composer require "cakephp-brasil/cart:dev-master"`
+Rode o comando `composer require "webdevbr/cart:dev-master"`
 
 Não esqueça de substituir `composer` por `php composer.phar` caso tenha baixado o arquivo localmente.
 
-Para isso adicione o pacote `cakephp-brasil/cart` ao require do *composer.json*.
+### 2. Instanciar
 
-    "require": {
-        "cakephp-brasil/cart": "dev-master"
-    },
+Para instanciar:
 
-Obs.: Não remova os pacotes que você já tiver, apenas adicione este novo, fique atento as virgulas!
+	use WebDevBr\Cart\ProductManager;
+	use WebDevBr\Cart\Cart;
 
-### 2. Configure
-
-Vá até o arquivo *config/bootstrap.php* do CakePHP 3 e adicione estas linhas no final:
-
-	$session = new Cake\Network\Session;
-	$adapter = new CakePhpBrasil\Cart\Adapter\Cake3Session($session);
-	CakePhpBrasil\Cart\Cart::configure($adapter);
-
-A ideia é que no futuro você possa trocar o `$adapter` por outro, por exemplo, para banco de dados em vez do `Session`, ou outras sugestões que a comunidade ainda poderá dar.
+	$cart = new WebDevBr\Cart\Cart(new ProductManager);
 
 Prontinho, agora é só usar.
 
@@ -45,16 +34,12 @@ O carrinho tem 4 recursos atualmente, ainda vamos incrementá-lo veja:
  - all() - Lista todos os produtos no carrinho
  - order(ORDER_BY_VALUE, bool false) - Ordena os produtos, atualmente só funciona por valor, assim que implementado, poderemos trocar o `ORDER_BY_VALUE` para definir o que faremos, o segundo parametro pode ser true ou false e indica que queremos inverter a ordenação (por maior valor ou por menor valor), o padrão é false.
 
-Em qualquer lugar da aplicação (de preferência em um controller) você poderá usar desta forma:
+Veja alguns exemplos:
 
-	CakePhpBrasil\Cart\Cart::get()->add($product);
-	CakePhpBrasil\Cart\Cart::get()->delete($id);
-	CakePhpBrasil\Cart\Cart::get()->all();
-	CakePhpBrasil\Cart\Cart::get()->add(ORDER_BY_VALUE);
-
-Separei um exemplo de controller pra você olhar, é só jogar dentro do diretório de controllers e acessar a url `\cart`, ou `\cart\add\\{1,2 ou 3}` ou `\cart\delete\\{1,2 ou 3}`.
-
-[Aqui o controller.](https://github.com/CakePHPBrasil/cart/blob/master/CartController.php)
+	$cart->add($product);
+	$cart->delete($id);
+	$cart->all();
+	$cart->add(ORDER_BY_VALUE);
 
 ## Como ajudar a desenvolver
 
@@ -70,10 +55,9 @@ Precisamos:
 
  - Validar as entradas de dados
  - Colocar mais opções de ordenação (por título, por exemplo)
- - Em vez de duplicar o produto, incrementar a quantidade
- - Outras coisas que passou batido
+ - Ideias!!!
 
-Na dúvida, mande uma pergunta no [Issues](https://github.com/CakePHPBrasil/cart/issues) ou converse com a equipe no [Slack](http://slack.cakephpbrasil.com.br/).
+Na dúvida, mande uma pergunta no [Issues](https://github.com/WebDevBr/cart/issues) ou converse comigo se cadastrando no [WebDevBr](http://www.webdevbr.com.br/).
 
 ## Tradução deste documento
 
