@@ -113,4 +113,16 @@ class CartTest extends \PHPUnit_Framework_TestCase
 
         $this->assertEquals($expected, $this->cart->all());
     }
+
+    public function testTotalDosValoresDosProdutos()
+    {
+        $this->product_one['qtd'] = 1;
+        $this->product_two['qtd'] = 1;
+        $this->product_tree['qtd'] = 1;
+        $this->cart->add($this->product_one)
+            ->add($this->product_two)
+            ->add($this->product_tree);
+
+        $this->assertEquals(6899.97, $this->cart->total());
+    }
 }

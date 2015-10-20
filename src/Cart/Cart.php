@@ -38,6 +38,21 @@ class Cart
         }
         return array_values($this->products);
     }
+
+    public function total()
+    {
+        $products = $this->products;
+        if (empty($this->products)) {
+            $products = $this->adapter->all();
+        }
+
+        $total = 0;
+        foreach ($products as &$product) {
+            $total += $product['value'];
+        }
+        return $total;
+    }
+
     private function orderByValue($a, $b)
     {
         if ($a['value'] == $b['value']) {
