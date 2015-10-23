@@ -10,6 +10,7 @@ class CartTest extends \PHPUnit_Framework_TestCase
         'id'=>1,
         'title'=>'Celular MotoG 3',
         'qtd'=>2,
+        'wheight'=>10,
         'value'=>799.99
     ];
 
@@ -17,6 +18,7 @@ class CartTest extends \PHPUnit_Framework_TestCase
         'id'=>2,
         'title'=>'Game Playstation 5',
         'qtd'=>1,
+        'wheight'=>12,
         'value'=>4599.99
     ];
 
@@ -24,6 +26,7 @@ class CartTest extends \PHPUnit_Framework_TestCase
         'id'=>3,
         'title'=>'Notebook Lenovo G400s',
         'qtd'=>8,
+        'wheight'=>13,
         'value'=>1499.99
     ];
 
@@ -124,5 +127,29 @@ class CartTest extends \PHPUnit_Framework_TestCase
             ->add($this->product_tree);
 
         $this->assertEquals(6899.97, $this->cart->total());
+    }
+
+    public function testTotalDosValoresDosProdutosComVariasQtds()
+    {
+        $this->product_one['qtd'] = 1;
+        $this->product_two['qtd'] = 1;
+        $this->product_tree['qtd'] = 2;
+        $this->cart->add($this->product_one)
+            ->add($this->product_two)
+            ->add($this->product_tree);
+
+        $this->assertEquals(8399.96, $this->cart->total());
+    }
+
+    public function testTotalDoPesoDosProdutos()
+    {
+        $this->product_one['qtd'] = 1;
+        $this->product_two['qtd'] = 1;
+        $this->product_tree['qtd'] = 2;
+        $this->cart->add($this->product_one)
+            ->add($this->product_two)
+            ->add($this->product_tree);
+
+        $this->assertEquals(48, $this->cart->wheight());
     }
 }

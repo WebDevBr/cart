@@ -41,6 +41,16 @@ class Cart
 
     public function total()
     {
+        return $this->sumAll('value');
+    }
+
+    public function wheight()
+    {
+        return $this->sumAll('wheight');
+    }
+
+    public function sumAll($field)
+    {
         $products = $this->products;
         if (empty($this->products)) {
             $products = $this->adapter->all();
@@ -48,7 +58,7 @@ class Cart
 
         $total = 0;
         foreach ($products as &$product) {
-            $total += $product['value'];
+            $total += ($product[$field]*$product['qtd']);
         }
         return $total;
     }
