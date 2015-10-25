@@ -11,7 +11,8 @@ class CartTest extends \PHPUnit_Framework_TestCase
         'title'=>'Celular MotoG 3',
         'qtd'=>2,
         'wheight'=>10,
-        'value'=>799.99
+        'value'=>1599.98,
+        'value_unt'=>799.99
     ];
 
     protected $product_two = [
@@ -19,7 +20,8 @@ class CartTest extends \PHPUnit_Framework_TestCase
         'title'=>'Game Playstation 5',
         'qtd'=>1,
         'wheight'=>12,
-        'value'=>4599.99
+        'value'=>4599.99,
+        'value_unt'=>4599.99
     ];
 
     protected $product_tree = [
@@ -27,7 +29,8 @@ class CartTest extends \PHPUnit_Framework_TestCase
         'title'=>'Notebook Lenovo G400s',
         'qtd'=>8,
         'wheight'=>13,
-        'value'=>1499.99
+        'value'=>11999.92,
+        'value_unt'=>1499.99
     ];
 
     public function setUp()
@@ -87,8 +90,8 @@ class CartTest extends \PHPUnit_Framework_TestCase
 
         $expected = [
             $this->product_one,
+            $this->product_two,
             $this->product_tree,
-            $this->product_two
         ];
 
         $this->assertEquals($expected, $this->cart->all());
@@ -103,15 +106,9 @@ class CartTest extends \PHPUnit_Framework_TestCase
         $this->cart->order(Cart::ORDER_BY_VALUE, true);
 
         $expected = [
-            $this->product_one,
             $this->product_tree,
-            $this->product_two
-        ];
-
-        $expected = [
             $this->product_two,
-            $this->product_tree,
-            $this->product_one
+            $this->product_one,
         ];
 
         $this->assertEquals($expected, $this->cart->all());
@@ -132,13 +129,13 @@ class CartTest extends \PHPUnit_Framework_TestCase
     public function testTotalDosValoresDosProdutosComVariasQtds()
     {
         $this->product_one['qtd'] = 1;
-        $this->product_two['qtd'] = 1;
+        $this->product_two['qtd'] = 2;
         $this->product_tree['qtd'] = 2;
         $this->cart->add($this->product_one)
             ->add($this->product_two)
             ->add($this->product_tree);
 
-        $this->assertEquals(8399.96, $this->cart->total());
+        $this->assertEquals(12999.95, $this->cart->total());
     }
 
     public function testTotalDoPesoDosProdutos()

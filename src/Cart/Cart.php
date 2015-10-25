@@ -41,7 +41,7 @@ class Cart
 
     public function total()
     {
-        return $this->sumAll('value');
+        return $this->sumAll('value_unt');
     }
 
     public function wheight()
