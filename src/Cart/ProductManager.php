@@ -10,6 +10,9 @@ class ProductManager implements Contract
     {
         $key = $this->getKey($product['id']);
         if ($key === false) {
+            if (empty($product['value_unt'])) {
+                $product['value_unt'] = $product['value'] / $product['qtd'];
+            }
             $this->products = array_merge($this->products, [$product]);
         } else {
             $this->products[$key] = $this->changeValue($this->products[$key]);

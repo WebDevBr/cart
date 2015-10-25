@@ -8,14 +8,16 @@ class ProductManagerTest extends \PHPUnit_Framework_TestCase
         'id'=>1,
         'title'=>'Celular MotoG 3',
         'qtd'=>2,
-        'value'=>799.99
+        'value'=>1599.98,
+        'value_unt'=>799.99
     ];
 
     protected $product_two = [
         'id'=>2,
         'title'=>'Game Playstation 5',
         'qtd'=>1,
-        'value'=>4599.99
+        'value'=>4599.99,
+        'value_unt'=>4599.99
     ];
 
     /** @var ArrayAdapter */
